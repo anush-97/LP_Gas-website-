@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Form</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }
+        h1 { color: #333; }
+        .form-group { margin-bottom: 15px; }
+        input, select { width: 100%; padding: 10px; margin-top: 5px; }
+        .btn { background-color: #5cb85c; color: white; padding: 10px; border: none; cursor: pointer; }
+        table { width: 100%; margin-top: 20px; border-collapse: collapse; }
+        th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+    </style>
+</head>
+<body>
+    <h1>Book Your Cylinders</h1>
+    <form id="bookingForm" method="POST" action="process_booking.php">
+        <div class="form-group">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+        </div>
+        <div class="form-group">
+            <label for="address">Delivery Address:</label>
+            <input type="text" id="address" name="address" required>
+        </div>
+        <div class="form-group">
+            <label for="quantity">Number of Cylinders:</label>
+            <select id="quantity" name="quantity" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="pricePerCylinder">Price per Cylinder:</label>
+            <input type="number" id="pricePerCylinder" name="pricePerCylinder" value="3600" readonly>
+            
+        </div>
+        <div class="form-group">
+            <label for="totalCost">Total Cost:</label>
+            <input type="text" id="totalCost" name="totalCost" readonly>
+        </div>
+        <button type="submit" class="btn">Book Now</button>
+    </form>
+    
+    <h2>Saved Booking Data</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Full Name</th>
+                <th>Email Address</th>
+                <th>Phone Number</th>
+                <th>Delivery Address</th>
+                <th>Number of Cylinders</th>
+                <th>Total Cost</th>
+            </tr>
+        </thead>
+        <tbody id="bookingData">
+            <!-- Data will be populated here from the server -->
+        </tbody>
+    </table>
+
+    <script>
+        // Fetch saved booking data from the server
+        fetch('get_bookings.php')
+            .then(response => response.json())
+            .then(data => {
+                const bookingData = document.getElementById('bookingData');
+                data.forEach(booking => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${booking.name}</td>
+                        <td>${booking.email}</td>
+                        <td>${booking.phone}</td>
+                        <td>${booking.address}</td>
+                        <td>${booking.quantity}</td>
+                        <td>${booking.total_cost}</td>
+                    `;
+                    bookingData.appendChild(row);
+                });
+            })
+            .catch(error => console.error('Error fetching booking data:', error));
+
+        // Calculate total cost based on quantity and price per cylinder
+        const quantitySelect = document.getElementById('quantity');
+        const pricePerCylinderInput = document.getElementById('pricePerCylinder');
+        const totalCostInput = document.getElementById('totalCost');
+
+        function calculateTotal() {
+            const quantity = parseInt(quantitySelect.value);
+            const pricePerCylinder = parseFloat(pricePerCylinderInput.value);
+            const totalCost = quantity * pricePerCylinder;
+            totalCostInput.value = totalCost.toFixed(2); // Format to 2 decimal places
+        }
+
+        quantitySelect.addEventListener('change', calculateTotal);
+        calculateTotal(); // Initial calculation on page load
+    </script>
+</body>
+</html>

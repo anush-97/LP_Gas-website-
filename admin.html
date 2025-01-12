@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #007bff; /* Changed to a blue background */
+            color: #fff;
+            padding: 20px 0; /* Increased padding */
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 20px; /* Increased margin */
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold; /* Made links bold */
+        }
+        .search-container {
+            margin: 20px 0; /* Added margin for search bar */
+            text-align: center;
+        }
+        .search-container input[type="text"] {
+            padding: 10px;
+            width: 200px; /* Width of the search bar */
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .search-container button {
+            padding: 10px 15px;
+            margin-left: 5px;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px; /* Added padding around the container */
+        }
+        .card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 15px;
+            padding: 20px;
+            width: 200px; /* Fixed width for cards */
+            text-align: center;
+        }
+        footer {
+            text-align: center;
+            padding: 15px 0; /* Increased padding */
+            background: #333;
+            color: #fff;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Admin Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="#dashboard">Dashboard</a></li>
+                <li><a href="#delivery-staff">Delivery Staff</a></li>
+                <li><a href="#reg-users">Registered Users</a></li>
+                <li><a href="#connection">Connection</a></li>
+                <li><a href="lpg_gas_booking.html">Booking</a></li> <!-- Updated link to point to booking page -->
+                <li><a href="#assigned-bookings">Assigned Bookings</a></li>
+                <li><a href="#reports">Reports</a></li>
+                <!--<li><a href="#search">Search</a></li>-->
+            </ul>
+        </nav>
+        <div class="search-container">
+            <input type="text" placeholder="Search...">
+            <button>Search</button>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="card">
+            <h3>Total New Connections</h3>
+            <p></p>
+            <button>View Details</button>
+        </div>
+        <div class="card">
+            <h3>Total Onhold Connections</h3>
+            <p></p>
+            <button>View Details</button>
+        </div>
+        <div class="card">
+            <h3>Total Approved Connections</h3>
+            <p></p>
+            <button>View Details</button>
+        </div>
+        <div class="card">
+            <h3>Total Rejected Connections</h3>
+            <p></p>
+            <button>View Details</button>
+        </div>
+        <div class="card">
+            <h3>Total Confirmed Bookings</h3>
+            <p></p>
+            <button>View Details</button>
+        </div>
+        <div class="card">
+            <h3>Total Assigned Bookings</h3>
+            <p></p>
+            <button>View Details</button>
+        </div>
+        <div class="card">
+            <h3>Total Delivered Cylinders</h3>
+            <p></p>
+            <button>View Details</button>
+        </div>
+        <div class="card">
+            <h3>Total Staff</h3>
+            <p></p>
+            <button>View Details</button>
+        </div>
+        <div class="card">
+            <h3>Total Reg Users</h3>
+            <p></p>
+            <button>View Details</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Admin Dashboard. All rights reserved.</p>
+    </footer>
+</body>
+</html>
